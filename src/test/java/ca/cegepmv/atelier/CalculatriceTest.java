@@ -67,16 +67,27 @@ class CalculatriceTest {
 
     @Test
     void multiplierDeuxNombres() {
-        // TODO: Arrange - Act - Assert
-        // Vérifiez que multiplier(4, 5) retourne 20
-        fail("Test à compléter");
+        // Arrange
+        int a = 4;
+        int b = 5;
+
+        // Act
+        int resultat = calculatrice.multiplier(a, b);
+        // ASSERT || Vérifiez que multiplier(4, 5) retourne 20
+        assertEquals(20, resultat);
     }
 
     @Test
     void maxRetourneLePlusGrandDesDeuxNombres() {
-        // TODO: Arrange - Act - Assert
-        // Vérifiez que max(7, 3) retourne 7
-        fail("Test à compléter");
+        // Arrange
+        int a = 7;
+        int b = 3;
+
+        // Act
+        int resultat = calculatrice.max(a, b);
+        // ASSERT || Vérifiez que max(7, 3) retourne 7
+        assertEquals(7, resultat);
+        
     }
 
     // ------------------------------------------------------------------
@@ -85,18 +96,24 @@ class CalculatriceTest {
 
     @Test
     void estPairDistingueLesNombresPairsEtImpairs() {
-        // TODO: utilisez assertAll(...) pour vérifier PLUSIEURS assertions dans un seul test :
+        assertAll("Est pair",
+        () -> assertTrue(calculatrice.estPair(4)),
+        () -> assertFalse(calculatrice.estPair(7)),
+        () -> assertTrue(calculatrice.estPair(0))
+        );
+
         //  - estPair(4) doit être vrai
         //  - estPair(7) doit être faux
         //  - estPair(0) doit être vrai
-        fail("Test à compléter");
     }
 
     @Test
     void diviserParZeroLanceUneException() {
         // TODO: utilisez assertThrows(ArithmeticException.class, () -> ...)
         // pour vérifier que diviser(10, 0) lance bien une ArithmeticException.
-        fail("Test à compléter");
+
+        ArithmeticException exception = assertThrows(ArithmeticException.class, () -> calculatrice.diviser(10, 0));
+        assertNotNull(exception.getMessage());
     }
 
     // ------------------------------------------------------------------
@@ -107,8 +124,9 @@ class CalculatriceTest {
     @ValueSource(ints = {2, 3, 5, 7, 11, 13})
     void estPremierRetourneVraiPourLesNombresPremiersConnus(int nombre) {
         // TODO: Act + Assert
+        boolean resultat = calculatrice.estPremier(nombre);
         // Vérifiez que estPremier(nombre) retourne true pour chacune des valeurs fournies.
-        fail("Test à compléter");
+        assertTrue(resultat);
     }
 
     @ParameterizedTest
@@ -120,15 +138,23 @@ class CalculatriceTest {
     })
     void estPremierGereLesCasLimites(int nombre, boolean attendu) {
         // TODO: Act + Assert
+        boolean resultat = calculatrice.estPremier(nombre);
         // Vérifiez que estPremier(nombre) correspond bien à la valeur "attendu".
-        fail("Test à compléter");
+        assertEquals(attendu, resultat);
     }
 
     @Test
     void diviserAvecNombresNegatifs() {
         // TODO: Arrange - Act - Assert
+         // Arrange
+        int a = -10;
+        int b = 2;
+
+        // Act
+        int resultat = calculatrice.diviser(a, b);
+
         // Cas limite : que se passe-t-il quand on divise un nombre négatif ?
         // Vérifiez que diviser(-10, 2) retourne -5.
-        fail("Test à compléter");
+        assertEquals(-5, resultat);
     }
 }
