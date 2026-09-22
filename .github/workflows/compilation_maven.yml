@@ -21,12 +21,14 @@ jobs:
             - name: Compilation projet Maven
               run: ./mvnw compile
 
+            - name: Build and run tests
+              run: ./mvnw -B clean verify
+
             - name: Publier le rapport de tests
               uses: actions/upload-artifact@v5
               with:
                 name: jacoco
                 path: target/site/jacoco/
-
             - name: Build
               run: ./mvnw -B clean package -DskipTests   # produit le .jar dans target/
           
