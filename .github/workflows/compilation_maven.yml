@@ -15,6 +15,6 @@ jobs:
                 distribution: 'temurin'
                 java-version: '25'
             - name: Fournir accès au runner
-              uses: chmod +x mvnw
+              run: chmod +x mvnw
             - name: Compilation projet Maven
               run: ./mvnw compile
